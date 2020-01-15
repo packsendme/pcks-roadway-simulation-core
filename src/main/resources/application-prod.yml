@@ -1,0 +1,17 @@
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 50000
+        readTimeout: 50000
+        loggerLevel: full
+
+hystrix:
+ command:
+   default:
+     execution:
+        timeout:
+          enabled: false
+
+apigoogleURL: https://maps.googleapis.com/maps/api/distancematrix/json?origins={origins}&destinations={destinations}
+key : AIzaSyDt5pgW0boE_KhyVZHpNAh-o7Z0dQWt2IA
