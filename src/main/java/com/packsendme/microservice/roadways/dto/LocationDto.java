@@ -13,6 +13,7 @@ public class LocationDto implements Serializable {
 	private String origin;
 	private int distanceInt;
 	private String distanceText;
+	private String status;
 	
 	public String getDestination() {
 		return destination;
@@ -37,6 +38,12 @@ public class LocationDto implements Serializable {
 	}
 	public void setDistanceText(String distanceText) {
 		this.distanceText = distanceText;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

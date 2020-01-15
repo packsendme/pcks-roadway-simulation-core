@@ -68,15 +68,20 @@ public class RoadwayService {
 	            	for (JsonNode rowObj : rowsNode) {
 						JsonNode elementsNode = rowObj.path("elements");
 						for (JsonNode elementObj : elementsNode) {
-				            JsonNode distanceNode = elementObj.path("distance");
-				            distanceInt = distanceNode.path("value").asInt();
-				            location.setDistanceInt(distanceInt);
-				            
-				            distanceS = distanceNode.path("text").asText();
-				            location.setDistanceText(distanceS);
-				            
-				            System.out.println(" DISTANCE CITY "+ distanceS);
-				            System.out.println(" DISTANCE CITY "+ distanceInt);
+							String status = elementObj.path("status").asText();
+							if(status != "OK") {
+					            location.setDistanceInt(0);
+					            location.setDistanceText("0");
+					            location.setStatus(status);
+							}
+							else if(status == "OK") {
+					            JsonNode distanceNode = elementObj.path("distance");
+					            distanceInt = distanceNode.path("value").asInt();
+					            distanceS = distanceNode.path("text").asText();
+					            location.setDistanceInt(distanceInt);
+					            location.setDistanceText(distanceS);
+					            location.setStatus(status);
+							}
 						}	
 					}
 	            }
