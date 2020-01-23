@@ -21,7 +21,7 @@ public class RoadwayController {
 	private RoadwayService roadwayService; 
 	
 	
-	@GetMapping("/landsa/{origins}/{destinations}")
+	@GetMapping("/roadway/sa/{origins}/{destinations}")
 	public ResponseEntity<?> loadDistancesBetweenCity(
 			@Validated @PathVariable ("origins") String origins,
 			@Validated @PathVariable ("destinations") String destinations) throws JsonProcessingException, IOException {		
