@@ -2,7 +2,6 @@ package com.packsendme.microservice.roadways.service;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -16,10 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.MongoClientException;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.roadways.dto.LocationDto;
@@ -93,7 +90,7 @@ public class RoadwayService {
 			}
 
 		}
-		catch (MongoClientException | IOException e ) {
+		catch (IOException e ) {
 			e.printStackTrace();
 			responseObj = new Response<LocationDto>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
