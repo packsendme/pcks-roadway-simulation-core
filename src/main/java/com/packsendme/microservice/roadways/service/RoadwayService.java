@@ -33,12 +33,6 @@ public class RoadwayService {
 		Response<LocationDto> responseObj = null;
 		LocationDto location = new LocationDto();
 		try {
-			
-			System.out.println(" -----------------------------------------------");
-
-			System.out.println("  ");
-
-			System.out.println("origin / destination >> "+ origin +"/"+ destination);
 			RestTemplate restTemplate = new RestTemplate();
 			int distanceInt = 0;
 			String distanceS = "";
@@ -56,30 +50,14 @@ public class RoadwayService {
 		    uriParam.put("destination", destination);
 		    uriParam.put("my", configuration.placeAPIKey);
 			
-		    ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI,HttpMethod.GET, request,
-                    String.class,uriParam);
+		    ResponseEntity<String> response = restTemplate.exchange(
+		    		configuration.placeGoogleAPI,
+		    		HttpMethod.GET, 
+		    		request,
+                    String.class,
+                    uriParam);
 
-	
-			/*ResponseEntity<String> response = restTemplate.exchange(
-					configuration.placeGoogleAPI,
-			        HttpMethod.GET,
-			        request,
-			        String.class,
-			        origin,
-			        destination,
-			        configuration.placeAPIKey
-			); */
-			
-			 
-				System.out.println("GOOGLE-key  >> "+ configuration.placeAPIKey);
-				System.out.println("GOOGLE-placeGoogleAPI  >> "+ configuration.placeGoogleAPI);
-
-			System.out.println(" BODY  >> "+ response.getBody());
-			
 			if (response.getStatusCode() == HttpStatus.OK) {
-				
-				System.out.println(" RESULT OK  >> "+ response.getStatusCode());
-				
 				byte[] jsonData = response.getBody().getBytes(); 
 				//create ObjectMapper instance
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -88,25 +66,22 @@ public class RoadwayService {
 				JsonNode rootNode = objectMapper.readTree(jsonData);
 				JsonNode rowsNode = rootNode.path("rows");
 	            if (rowsNode.isArray()) {
-					System.out.println(" RESULT rowsNode isArray - FULL");
-
 	            	for (JsonNode rowObj : rowsNode) {
 						JsonNode elementsNode = rowObj.path("elements");
 						for (JsonNode elementObj : elementsNode) {
 							String status = elementObj.path("status").asText();
-							System.out.println(" RESULT status  >> "+ status);
-
-							if(status != "OK") {
-					            location.setDistanceInt(0);
-					            location.setDistanceText("0");
-					            location.setStatus(status);
-							}
-							else if(status == "OK") {
+							
+							if(status.equals("OK")) {
 					            JsonNode distanceNode = elementObj.path("distance");
 					            distanceInt = distanceNode.path("value").asInt();
 					            distanceS = distanceNode.path("text").asText();
 					            location.setDistanceInt(distanceInt);
 					            location.setDistanceText(distanceS);
+					            location.setStatus(status);
+							}
+							else {
+					            location.setDistanceInt(0);
+					            location.setDistanceText("0");
 					            location.setStatus(status);
 							}
 						}	
