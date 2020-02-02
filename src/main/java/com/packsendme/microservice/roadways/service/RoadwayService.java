@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,19 +18,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
+import com.packsendme.microservice.roadways.config.Configuration;
 import com.packsendme.microservice.roadways.dto.LocationDto;
  
 
 @Service
-@ConfigurationProperties
 public class RoadwayService {
 	
-	@Value("${app.env.apigoogleURL}")
-	private String apigoogleURL;
+	@Autowired
+	private Configuration configuration;
 
-	@Value("${app.env.key}")
-	private String apikey;
-	
 	public ResponseEntity<?> findDistancesByCity(String origin, String destination) {
 		Response<LocationDto> responseObj = null;
 		LocationDto location = new LocationDto();
@@ -50,9 +46,9 @@ public class RoadwayService {
 			 Map<String, String> urlParameters = new HashMap<>();
 			 urlParameters.put("origins", origin);
 			 urlParameters.put("destinations", destination);
-			 urlParameters.put("key", apikey);
+			 urlParameters.put("key", configuration.placeAPIKey);
 
-			ResponseEntity<String> response = restTemplate.exchange(apigoogleURL, HttpMethod.GET, entity, String.class, origin, destination);
+			ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI, HttpMethod.GET, entity, String.class, origin, destination);
 			if (response.getStatusCode() == HttpStatus.OK) {
 				byte[] jsonData = response.getBody().getBytes(); 
 				//create ObjectMapper instance
