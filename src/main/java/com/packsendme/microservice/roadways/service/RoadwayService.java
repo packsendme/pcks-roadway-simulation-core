@@ -59,6 +59,8 @@ public class RoadwayService {
 
 
 			ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI, HttpMethod.GET, entity, String.class, origin, destination);
+			System.out.println(" BODY  >> "+ response.getBody());
+			
 			if (response.getStatusCode() == HttpStatus.OK) {
 				
 				System.out.println(" RESULT OK  >> "+ response.getStatusCode());
