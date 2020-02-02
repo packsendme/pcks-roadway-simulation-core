@@ -49,19 +49,27 @@ public class RoadwayService {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
 			HttpEntity request = new HttpEntity(headers);
-			ResponseEntity<String> response = restTemplate.exchange(
+			
+			Map<String, String> uriParam = new HashMap<>();
+		    uriParam.put("origins", origin);
+		    uriParam.put("origins", destination);
+		    uriParam.put("my", configuration.placeAPIKey);
+			
+		    ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI,HttpMethod.GET, request,
+                    String.class,uriParam);
+
+	
+			/*ResponseEntity<String> response = restTemplate.exchange(
 					configuration.placeGoogleAPI,
 			        HttpMethod.GET,
 			        request,
 			        String.class,
 			        origin,
 			        destination,
-			        configuration.placeGoogleAPI
-			);
+			        configuration.placeAPIKey
+			); */
 			
-			 // urlParameters.put("key", configuration.placeAPIKey);
 			 
 				System.out.println("GOOGLE-key  >> "+ configuration.placeAPIKey);
 				System.out.println("GOOGLE-placeGoogleAPI  >> "+ configuration.placeGoogleAPI);
