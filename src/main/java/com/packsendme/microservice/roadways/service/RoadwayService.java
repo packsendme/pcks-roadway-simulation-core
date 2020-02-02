@@ -52,8 +52,8 @@ public class RoadwayService {
 			HttpEntity request = new HttpEntity(headers);
 			
 			Map<String, String> uriParam = new HashMap<>();
-		    uriParam.put("origins", origin);
-		    uriParam.put("origins", destination);
+		    uriParam.put("origin", origin);
+		    uriParam.put("destination", destination);
 		    uriParam.put("my", configuration.placeAPIKey);
 			
 		    ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI,HttpMethod.GET, request,
