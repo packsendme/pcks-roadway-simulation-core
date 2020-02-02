@@ -1,6 +1,7 @@
 package com.packsendme.microservice.roadways.service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,18 +48,24 @@ public class RoadwayService {
 			
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
-			HttpEntity entity = new HttpEntity(headers);
+			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+			HttpEntity request = new HttpEntity(headers);
+			ResponseEntity<String> response = restTemplate.exchange(
+					configuration.placeGoogleAPI,
+			        HttpMethod.GET,
+			        request,
+			        String.class,
+			        origin,
+			        destination,
+			        configuration.placeGoogleAPI
+			);
 			
-			 Map<String, String> urlParameters = new HashMap<>();
-			 urlParameters.put("origins", origin);
-			 urlParameters.put("destinations", destination);
-			 urlParameters.put("key", configuration.placeAPIKey);
+			 // urlParameters.put("key", configuration.placeAPIKey);
 			 
 				System.out.println("GOOGLE-key  >> "+ configuration.placeAPIKey);
 				System.out.println("GOOGLE-placeGoogleAPI  >> "+ configuration.placeGoogleAPI);
 
-
-			ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI, HttpMethod.GET, entity, String.class, origin, destination);
 			System.out.println(" BODY  >> "+ response.getBody());
 			
 			if (response.getStatusCode() == HttpStatus.OK) {
