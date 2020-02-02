@@ -32,6 +32,12 @@ public class RoadwayService {
 		Response<LocationDto> responseObj = null;
 		LocationDto location = new LocationDto();
 		try {
+			
+			System.out.println(" -----------------------------------------------");
+
+			System.out.println("  ");
+
+			System.out.println("origin / destination >> "+ origin +"/"+ destination);
 			RestTemplate restTemplate = new RestTemplate();
 			int distanceInt = 0;
 			String distanceS = "";
@@ -47,9 +53,16 @@ public class RoadwayService {
 			 urlParameters.put("origins", origin);
 			 urlParameters.put("destinations", destination);
 			 urlParameters.put("key", configuration.placeAPIKey);
+			 
+				System.out.println("GOOGLE-key  >> "+ configuration.placeAPIKey);
+				System.out.println("GOOGLE-placeGoogleAPI  >> "+ configuration.placeGoogleAPI);
+
 
 			ResponseEntity<String> response = restTemplate.exchange(configuration.placeGoogleAPI, HttpMethod.GET, entity, String.class, origin, destination);
 			if (response.getStatusCode() == HttpStatus.OK) {
+				
+				System.out.println(" RESULT OK  >> "+ response.getStatusCode());
+				
 				byte[] jsonData = response.getBody().getBytes(); 
 				//create ObjectMapper instance
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -58,10 +71,14 @@ public class RoadwayService {
 				JsonNode rootNode = objectMapper.readTree(jsonData);
 				JsonNode rowsNode = rootNode.path("rows");
 	            if (rowsNode.isArray()) {
+					System.out.println(" RESULT rowsNode isArray - FULL");
+
 	            	for (JsonNode rowObj : rowsNode) {
 						JsonNode elementsNode = rowObj.path("elements");
 						for (JsonNode elementObj : elementsNode) {
 							String status = elementObj.path("status").asText();
+							System.out.println(" RESULT status  >> "+ status);
+
 							if(status != "OK") {
 					            location.setDistanceInt(0);
 					            location.setDistanceText("0");
