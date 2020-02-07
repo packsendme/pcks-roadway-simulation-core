@@ -1,4 +1,4 @@
-package com.packsendme.microservice.payment.test;
+package com.packsendme.microservice.roadwaysa.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootConfiguration
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CountryApplicationTests {
+public class RoadwaysApplicationTests {
 
 	@Test
 	public void contextLoads() {
