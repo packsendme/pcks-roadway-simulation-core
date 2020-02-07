@@ -78,6 +78,7 @@ public class RoadwayService {
 					            location.setDistanceInt(distanceInt);
 					            location.setDistanceText(distanceS);
 					            location.setStatus(status);
+					            location.setTolls("100,00");
 							}
 							else {
 					            location.setDistanceInt(0);
