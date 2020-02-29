@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadways.controller;
+package com.packsendme.microservice.sa.roadways.controller;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.packsendme.microservice.roadways.service.RoadwayService;
+import com.packsendme.microservice.sa.roadways.service.RoadwayService;
 
 
 @RestController

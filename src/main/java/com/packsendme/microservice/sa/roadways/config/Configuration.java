@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadways.config;
+package com.packsendme.microservice.sa.roadways.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

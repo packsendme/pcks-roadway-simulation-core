@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.packsendme.microservice.roadways</groupId>
-	<artifactId>packsendme-roadwaysa-server</artifactId>
+	<groupId>com.packsendme.microservice.sa.roadways</groupId>
+	<artifactId>packsendme-roadway-sa-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>packsendme-land-sa-server</name>
-	<description>Microservice Simulation - Land South America </description>
+	<name>packsendme-roadway-sa-server</name>
+
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -93,6 +93,12 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.packsendme.lib.bre.roadway</groupId>
+			<artifactId>packsendme-roadwaybre-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

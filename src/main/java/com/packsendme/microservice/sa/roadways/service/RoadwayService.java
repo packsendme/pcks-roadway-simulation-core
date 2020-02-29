@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadways.service;
+package com.packsendme.microservice.sa.roadways.service;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -19,8 +19,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.roadways.config.Configuration;
-import com.packsendme.microservice.roadways.dto.LocationDto;
+import com.packsendme.microservice.sa.roadways.config.Configuration;
+import com.packsendme.microservice.sa.roadways.dto.LocationDto;
  
 
 @Service
