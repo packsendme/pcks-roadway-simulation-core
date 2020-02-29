@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadways.dto;
+package com.packsendme.microservice.sa.roadways.dto;
 
 import java.io.Serializable;
 
