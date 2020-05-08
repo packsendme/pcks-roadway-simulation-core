@@ -3,7 +3,7 @@ package com.packsendme.microservice.roadway.component;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
-@ComponentScan("com.packsendme.microservice.roadway.controller")
+@EnableFeignClients(basePackages="com.packsendme.microservice.roadway.controller")
 public class RoadwayLoadData_Component {
 	
 	@Autowired
