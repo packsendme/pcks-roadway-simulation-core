@@ -24,7 +24,7 @@ public class Roadway_Service {
 	private LoadDataSouthAmerica_Component loadDataSA_component;
 	 	
 	
-	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map isoInformation) {
+	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map<String, String> isoInformation) {
 		Response<SimulationRoadwayResponse_Dto> responseObj = null;
 		try {
 			LoadDataSouthAmerica_Dto loadDataSA_dto = loadDataSA_component.getDataSouthAmerica(simulationData, isoInformation);
