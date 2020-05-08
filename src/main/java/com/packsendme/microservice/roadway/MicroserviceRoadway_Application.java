@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableEurekaClient
 @ComponentScan(basePackages = {"com.packsendme.microservice.roadway.component"})
-
 public class MicroserviceRoadway_Application {
 
 	public static void main(String[] args) {
