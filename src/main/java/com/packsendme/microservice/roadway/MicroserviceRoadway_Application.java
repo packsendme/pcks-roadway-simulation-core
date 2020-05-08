@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-//@ComponentScan(basePackages = {"com.packsendme.microservice.roadway.component"})
 public class MicroserviceRoadway_Application {
 
 	public static void main(String[] args) {
