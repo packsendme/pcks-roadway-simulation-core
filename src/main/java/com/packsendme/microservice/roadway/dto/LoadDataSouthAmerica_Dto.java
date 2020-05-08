@@ -1,7 +1,7 @@
 package com.packsendme.microservice.roadway.dto;
 
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
-import com.packsendme.lib.simulation.request.dto.SimulationDataForCalculateRequest_Dto;
+import com.packsendme.lib.simulation.http.SimulationDataForCalculateRequest_Dto;
 
 import lombok.Getter;
 import lombok.Setter;

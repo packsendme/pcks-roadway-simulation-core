@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.lib.roadwaycalculate.component.RoadwayInstanceCosts;
-import com.packsendme.lib.simulation.request.dto.SimulationRequest_Dto;
-import com.packsendme.lib.simulation.way.response.dto.SimulationRoadwayResponse_Dto;
+import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
+import com.packsendme.lib.simulation.roadway.SimulationRoadwayResponse_Dto;
 import com.packsendme.microservice.roadway.component.loader.LoadDataSouthAmerica_Component;
 import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 
