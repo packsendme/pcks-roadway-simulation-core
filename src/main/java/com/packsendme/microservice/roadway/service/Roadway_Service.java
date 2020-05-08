@@ -13,21 +13,21 @@ import com.packsendme.lib.common.response.Response;
 import com.packsendme.lib.roadwaycalculate.component.RoadwayInstanceCosts;
 import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
 import com.packsendme.lib.simulation.roadway.SimulationRoadwayResponse_Dto;
-import com.packsendme.microservice.roadway.component.loader.LoadDataSouthAmerica_Component;
+import com.packsendme.microservice.roadway.component.RoadwayLoadData_Component;
 import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 
 @Service
-@ComponentScan("com.packsendme.microservice.roadway.component.loader")
+@ComponentScan("com.packsendme.microservice.roadway.component")
 public class Roadway_Service {
 	
 	@Autowired(required=true)
-	private LoadDataSouthAmerica_Component loadDataSA_component;
+	private RoadwayLoadData_Component roadwayLoadData;
 	 	
 	
 	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map<String, String> isoInformation) {
 		Response<SimulationRoadwayResponse_Dto> responseObj = null;
 		try {
-			LoadDataSouthAmerica_Dto loadDataSA_dto = loadDataSA_component.getDataSouthAmerica(simulationData, isoInformation);
+			LoadDataSouthAmerica_Dto loadDataSA_dto = roadwayLoadData.getDataSouthAmerica(simulationData, isoInformation);
 			
 			RoadwayInstanceCosts roadwayInstance = new RoadwayInstanceCosts();
 			SimulationRoadwayResponse_Dto simulationRoadwayResp = roadwayInstance.instanceRulesCosts(loadDataSA_dto.simulationTrackingAPI, loadDataSA_dto.simulationData);
