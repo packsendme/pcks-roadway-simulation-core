@@ -17,7 +17,7 @@ import com.packsendme.microservice.roadway.component.RoadwayLoadData_Component;
 import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 
 @Service
-@ComponentScan //("com.packsendme.microservice.roadway.component")
+@ComponentScan("com.packsendme.microservice.roadway.component")
 public class Roadway_Service {
 	
 	@Autowired(required=true)
