@@ -17,12 +17,12 @@ import com.packsendme.microservice.roadway.component.RoadwayLoadData_Component;
 import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 
 @Service
-@ComponentScan("com.packsendme.microservice.roadway.component")
+@ComponentScan //("com.packsendme.microservice.roadway.component")
 public class Roadway_Service {
 	
 	@Autowired(required=true)
 	private RoadwayLoadData_Component roadwayLoadData;
-	 	
+
 	
 	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map<String, String> isoInformation) {
 		Response<SimulationRoadwayResponse_Dto> responseObj = null;

@@ -20,7 +20,7 @@ import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
-@ComponentScan("com.packsendme.microservice.roadway")
+@ComponentScan //("com.packsendme.microservice.roadway")
 public class RoadwayLoadData_Component {
 	
 	@Autowired
