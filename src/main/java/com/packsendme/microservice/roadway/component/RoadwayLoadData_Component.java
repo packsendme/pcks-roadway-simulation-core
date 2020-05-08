@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,7 @@ import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
 @EnableFeignClients(basePackages="com.packsendme.microservice.roadway.controller")
+@ComponentScan("com.packsendme.microservice.roadway.config")
 public class RoadwayLoadData_Component {
 	
 	@Autowired
