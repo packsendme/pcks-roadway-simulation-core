@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadwaysa.test;
+package com.packsendme.microservice.sa.roadway.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
