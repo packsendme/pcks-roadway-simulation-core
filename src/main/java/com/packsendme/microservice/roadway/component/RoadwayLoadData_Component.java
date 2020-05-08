@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadway.component.loader;
+package com.packsendme.microservice.roadway.component;
 
 import java.util.Map;
 
@@ -12,7 +12,6 @@ import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 import com.packsendme.lib.simulation.http.SimulationDataForCalculateRequest_Dto;
 import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
-import com.packsendme.microservice.roadway.component.parser.ResponseParser_SouthAmerica;
 import com.packsendme.microservice.roadway.config.Cache_Config;
 import com.packsendme.microservice.roadway.controller.IBusinessManager_SA_Client;
 import com.packsendme.microservice.roadway.controller.IExchangeRate_Client;
@@ -22,7 +21,7 @@ import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
 @ComponentScan("com.packsendme.microservice.roadway")
-public class LoadDataSouthAmerica_Component {
+public class RoadwayLoadData_Component {
 	
 	@Autowired
 	private IGoogleAPI_Client googleClient;
@@ -34,7 +33,7 @@ public class LoadDataSouthAmerica_Component {
 	private IExchangeRate_Client exchangeRate_Client;
 	
 	@Autowired
-	private ResponseParser_SouthAmerica responseParserSA;
+	private RoadwayParserData_Component roadwayParserData;
 	
 	
 	@Autowired
@@ -46,19 +45,19 @@ public class LoadDataSouthAmerica_Component {
 		
 		//(1) Instance Google-API
 		ResponseEntity<?> googleAPIResponse = googleClient.getTracking(simulationData);
-		GoogleAPITrackingResponse_Dto simulationGoogleAPI = responseParserSA.getParseRoadwayResponseAPI(googleAPIResponse);
+		GoogleAPITrackingResponse_Dto simulationGoogleAPI = roadwayParserData.getParseRoadwayResponseAPI(googleAPIResponse);
 
 		//(2) Instance Roadway-Cache  BusinessManager/Rule
 		ResponseEntity<?> roadayCacheResponse = businessRule_Client.getRoadwayBRE_SA(cache.roadwayBRE_SA);
-		RoadwayBRE_Model roadwayBRE = responseParserSA.getParseRoadwayResponseCache(roadayCacheResponse);
+		RoadwayBRE_Model roadwayBRE = roadwayParserData.getParseRoadwayResponseCache(roadayCacheResponse);
 		
 		//(2.1) Instance PackSendPercentage-Cache  BusinessManager/Rule
 		ResponseEntity<?> financeCacheResponse = businessRule_Client.getFinanceCostDeliveryBRE_SA(cache.financeCostDeliveryBRE_SA);
-		FinanceCostDeliveryBRE_Model packSendPercentage = responseParserSA.getParseFinanceCostDeliveryResponseCache(financeCacheResponse);
+		FinanceCostDeliveryBRE_Model packSendPercentage = roadwayParserData.getParseFinanceCostDeliveryResponseCache(financeCacheResponse);
 
 		// (3) Instance RateExchange-API
 		ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(isoInformation.get("isoCurrencyCode").toString());
-		ExchangeBRE_Model exchangeBRE = responseParserSA.getParseExchangeResponseCache(exchangeResponse);
+		ExchangeBRE_Model exchangeBRE = roadwayParserData.getParseExchangeResponseCache(exchangeResponse);
 
 		simulationReqCustomer_dto = new SimulationDataForCalculateRequest_Dto(
 				simulationData.weight_product, 

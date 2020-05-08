@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadway.component.parser;
+package com.packsendme.microservice.roadway.component;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
-public class ResponseParser_SouthAmerica {
+public class RoadwayParserData_Component {
 
 	Gson gson = new Gson();
 	
