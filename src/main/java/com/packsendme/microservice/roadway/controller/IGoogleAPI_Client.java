@@ -6,7 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.packsendme.lib.simulation.request.dto.SimulationRequest_Dto;
+import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
 
 @FeignClient(name="packsendme-google-api")
 public interface IGoogleAPI_Client {
