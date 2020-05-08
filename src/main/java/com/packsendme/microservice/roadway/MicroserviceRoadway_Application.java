@@ -1,4 +1,4 @@
-package com.packsendme.microservice.sa.roadway;
+package com.packsendme.microservice.roadway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class MicroserviceRoadwaySA_Application {
+public class MicroserviceRoadway_Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceRoadwaySA_Application.class, args);
+		SpringApplication.run(MicroserviceRoadway_Application.class, args);
 	}
 }
 

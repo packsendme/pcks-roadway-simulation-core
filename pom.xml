@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.packsendme.microservice.roadways</groupId>
-	<artifactId>packsendme-roadway-server</artifactId>
+	<artifactId>packsendme-roadway-sa-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>packsendme-roadway-server</name>
+	<name>packsendme-roadway-sa-server</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -104,20 +104,43 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.entity.simulation</groupId>
-  			<artifactId>packsendme-simulation-lib</artifactId>
+			<groupId>com.packsendme.lib.calculate</groupId>
+  			<artifactId>packsendme-roadwaycalculate-sa-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.springframework.kafka</groupId>
-		    <artifactId>spring-kafka</artifactId>
+			<groupId>com.packsendme.lib.entity.simulation</groupId>
+  			<artifactId>packsendme-simulation-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.packsendme.bre.financecostdelivery</groupId>
+		    <artifactId>packsendme-financecostdelivery-bre</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka-clients</artifactId>
-		    <version>2.3.1</version>
+			<groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>io.lettuce</groupId>
+		            <artifactId>lettuce-core</artifactId>
+		        </exclusion>
+		    </exclusions>            
+		</dependency>     
+ 
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.packsendme.api.exchange</groupId>
+			<artifactId>packsendme-exchange-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

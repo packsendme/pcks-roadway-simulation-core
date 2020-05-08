@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NAME_CONTAINER = "roadway-microservice-psm"
-        NAME_IMAGE = "roadway-image-psm:1"
+        NAME_CONTAINER = "roadway-sa-microservice-psm"
+        NAME_IMAGE = "roadway-sa-image-psm:1"
         ID_CONTAINER = null 
         PORT_CONTAINER = "9098:9098"
     }
