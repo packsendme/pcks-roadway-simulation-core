@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="packsendme-businessrule-sa-server")
 public interface IBusinessManager_SA_Client {
 
-	@GetMapping("/roadway/{name_rule}")
+	@GetMapping("/businessrule/sa/roadway/{name_rule}")
 	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule);
 	
-	@GetMapping("/financecostdelivery/{rule_type}")
+	@GetMapping("/businessrule/sa/financecostdelivery/{rule_type}")
 	public ResponseEntity<?> getFinanceCostDeliveryBRE_SA(@Validated @PathVariable ("rule_type") String rule_type);		
 
 }
