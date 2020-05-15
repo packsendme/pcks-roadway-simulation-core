@@ -26,7 +26,7 @@ public class RoadwayController {
 	@Autowired
 	private Roadway_Service roadwayService; 	
 	
-	@GetMapping("/simulation")
+	@GetMapping("/simulation/{address_origin}/{address_destination}/{type_product}/{weight_product}/{type_delivery}/{unity_measurement_weight}")
 	public ResponseEntity<?> getSimulation(
 			@RequestHeader(value = "isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader(value = "isoCountryCode") String isoCountryCode,
