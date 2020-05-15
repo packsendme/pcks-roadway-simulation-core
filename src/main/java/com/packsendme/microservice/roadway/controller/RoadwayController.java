@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,17 +27,17 @@ public class RoadwayController {
 	@Autowired
 	private Roadway_Service roadwayService; 	
 	
-	@GetMapping("/simulation/{address_origin}/{address_destination}/{type_product}/{weight_product}/{type_delivery}/{unity_measurement_weight}")
+	@GetMapping("/simulation")
 	public ResponseEntity<?> getSimulation(
 			@RequestHeader(value = "isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader(value = "isoCountryCode") String isoCountryCode,
 			@RequestHeader(value = "isoCurrencyCode") String isoCurrencyCode,
-			@Validated  @PathVariable ("address_origin") String address_origin,
-			@Validated  @PathVariable ("address_destination") String address_destination,
-			@Validated  @PathVariable ("type_product") String type_product,
-			@Validated  @PathVariable ("weight_product") String weight_product,
-			@Validated  @PathVariable ("type_delivery") String type_delivery,
-			@Validated  @PathVariable ("unity_measurement_weight") String unity_measurement_weight) 
+			@Validated  @RequestParam ("address_origin") String address_origin,
+			@Validated  @RequestParam ("address_destination") String address_destination,
+			@Validated  @RequestParam ("type_product") String type_product,
+			@Validated  @RequestParam ("weight_product") String weight_product,
+			@Validated  @RequestParam ("type_delivery") String type_delivery,
+			@Validated  @RequestParam ("unity_measurement_weight") String unity_measurement_weight) 
 	throws JsonProcessingException, IOException 
 	{	
 		SimulationRequest_Dto simulationReqDto = new SimulationRequest_Dto();
