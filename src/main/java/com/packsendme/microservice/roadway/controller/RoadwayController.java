@@ -31,9 +31,9 @@ public class RoadwayController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/simulation")
 	public ResponseEntity<?> getSimulation(
-			@RequestHeader(value = "isoLanguageCode") String isoLanguageCode, 
-			@RequestHeader(value = "isoCountryCode") String isoCountryCode,
-			@RequestHeader(value = "isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@Validated  @RequestParam ("address_origin") String address_origin,
 			@Validated  @RequestParam ("address_destination") String address_destination,
 			@Validated  @RequestParam ("type_product") String type_product,
@@ -44,6 +44,24 @@ public class RoadwayController {
 	{	
 		SimulationRequest_Dto simulationReqDto = new SimulationRequest_Dto();
 
+		System.out.println(" ");
+		System.out.println("====================================================");
+		System.out.println(" - isoLanguageCode - "+ isoLanguageCode);
+		System.out.println(" - isoCountryCode - "+ isoCountryCode);
+		System.out.println(" - isoCurrencyCode - "+ isoCurrencyCode);
+		System.out.println("====================================================");
+		System.out.println("====================================================");
+		System.out.println(" ");
+		System.out.println(" - address_origin - "+ address_origin);
+		System.out.println(" - address_destination - "+ address_destination);
+		System.out.println(" - type_product - "+ type_product);
+		System.out.println(" - weight_product - "+ weight_product);
+		System.out.println(" - type_delivery - "+ type_delivery);
+		System.out.println(" - unity_measurement_weight - "+ unity_measurement_weight);
+		System.out.println("====================================================");
+		System.out.println(" ");
+		
+		
 		Map<String, String> isoInformation = new HashMap<String, String>();
 		isoInformation.put("isoLanguageCode", isoLanguageCode);
 		isoInformation.put("isoCountryCode", isoCountryCode);
