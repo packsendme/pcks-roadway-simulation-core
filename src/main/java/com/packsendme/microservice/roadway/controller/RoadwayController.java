@@ -68,7 +68,7 @@ public class RoadwayController {
 		isoInformation.put("isoCurrencyCode", isoCurrencyCode);
 		
 		simulationReqDto.address_origin = address_origin;
-		simulationReqDto.address_destination = address_origin;
+		simulationReqDto.address_destination = address_destination;
 		simulationReqDto.type_product = type_product;
 		simulationReqDto.weight_product =  Double.parseDouble(weight_product);
 		simulationReqDto.type_delivery = type_delivery;
