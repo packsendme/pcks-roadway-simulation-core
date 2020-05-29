@@ -24,6 +24,6 @@ public interface IBusinessManager_SA_Client {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated @RequestParam ("rule_type") String rule_type);		
+			@Validated @RequestParam ("name_rule") String name_rule);		
 
 }
