@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name="packsendme-exchange-api")
 public interface IExchangeRate_Client {
 
-	@GetMapping("/api/exchange/{current}")
+	@GetMapping("/api/exchange/rate/{current}")
 	public ResponseEntity<?> getExchange(@Validated  @RequestParam ("current") String current);		
 
 }
