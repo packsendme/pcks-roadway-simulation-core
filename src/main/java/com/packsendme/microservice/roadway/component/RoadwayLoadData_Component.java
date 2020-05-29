@@ -42,32 +42,36 @@ public class RoadwayLoadData_Component {
 	private Cache_Config cache;
 
 	
-	public LoadDataSouthAmerica_Dto getDataSouthAmerica(SimulationRequest_Dto simulationData, Map isoInformation) {
+	public LoadDataSouthAmerica_Dto getDataSouthAmerica(SimulationRequest_Dto simulationData, Map header) {
 		SimulationDataForCalculateRequest_Dto simulationReqCustomer_dto = null;
 		
 		try {
 			//(1) Instance Google-API
-			ResponseEntity<?> googleAPIResponse = googleClient.getTracking(simulationData);
+			ResponseEntity<?> googleAPIResponse = googleClient.getTracking(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
+					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(),simulationData);
+			
 			GoogleAPITrackingResponse_Dto simulationGoogleAPI = roadwayParserData.getParseRoadwayResponseAPI(googleAPIResponse);
 	
 			//(2) Instance Roadway-Cache  BusinessManager/Rule
-			ResponseEntity<?> roadayCacheResponse = businessRule_Client.getRoadwayBRE_SA(cache.roadwayBRE_SA);
+			ResponseEntity<?> roadayCacheResponse = businessRule_Client.getRoadwayBRE_SA(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
+					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(),cache.roadwayBRE_SA);
 			RoadwayBRE_Model roadwayBRE = roadwayParserData.getParseRoadwayResponseCache(roadayCacheResponse);
 			
 			//(2.1) Instance PackSendPercentage-Cache  BusinessManager/Rule
-			ResponseEntity<?> financeCacheResponse = businessRule_Client.getFinanceCostDeliveryBRE_SA(cache.financeCostDeliveryBRE_SA);
+			ResponseEntity<?> financeCacheResponse = businessRule_Client.getFinanceCostDeliveryBRE_SA(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
+					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(),cache.financeCostDeliveryBRE_SA);
 			FinanceCostDeliveryBRE_Model packSendPercentage = roadwayParserData.getParseFinanceCostDeliveryResponseCache(financeCacheResponse);
 	
 			// (3) Instance RateExchange-API
-			ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(isoInformation.get("isoCurrencyCode").toString());
+			ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(header.get("isoCurrencyCode").toString());
 			ExchangeBRE_Model exchangeBRE = roadwayParserData.getParseExchangeResponseCache(exchangeResponse);
 	
 			simulationReqCustomer_dto = new SimulationDataForCalculateRequest_Dto(
 					simulationData.weight_product, 
 					simulationData.unity_measurement_weight, 
 					simulationData.type_delivery, 
-					isoInformation.get("isoLanguageCode").toString(), 
-					isoInformation.get("isoCountryCode").toString(), 
+					header.get("isoLanguageCode").toString(), 
+					header.get("isoCountryCode").toString(), 
 					exchangeBRE.value, 
 					packSendPercentage.percentage_packsend, 
 					roadwayBRE);

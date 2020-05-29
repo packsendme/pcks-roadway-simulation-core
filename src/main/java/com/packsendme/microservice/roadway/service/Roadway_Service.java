@@ -24,10 +24,10 @@ public class Roadway_Service {
 	private RoadwayLoadData_Component roadwayLoadData;
 
 	
-	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map<String, String> isoInformation) {
+	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map header) {
 		Response<SimulationRoadwayResponse_Dto> responseObj = null;
 		try {
-			LoadDataSouthAmerica_Dto loadDataSA_dto = roadwayLoadData.getDataSouthAmerica(simulationData, isoInformation);
+			LoadDataSouthAmerica_Dto loadDataSA_dto = roadwayLoadData.getDataSouthAmerica(simulationData, header);
 			
 			RoadwayInstanceCosts roadwayInstance = new RoadwayInstanceCosts();
 			SimulationRoadwayResponse_Dto simulationRoadwayResp = roadwayInstance.instanceRulesCosts(loadDataSA_dto.simulationTrackingAPI, loadDataSA_dto.simulationData);
