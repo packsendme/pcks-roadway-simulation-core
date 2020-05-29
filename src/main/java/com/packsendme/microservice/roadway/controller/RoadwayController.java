@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +25,9 @@ import com.packsendme.microservice.roadway.service.Roadway_Service;
 public class RoadwayController {
 
 	@Autowired
-	private Roadway_Service roadwayService; 	
+	private Roadway_Service roadwayService;
+
+	private Map<String, String> header = new HashMap<String, String>();
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/simulation")
@@ -34,6 +35,7 @@ public class RoadwayController {
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
 			@Validated  @RequestParam ("address_origin") String address_origin,
 			@Validated  @RequestParam ("address_destination") String address_destination,
 			@Validated  @RequestParam ("type_product") String type_product,
@@ -62,10 +64,11 @@ public class RoadwayController {
 		System.out.println(" ");
 		
 		
-		Map<String, String> isoInformation = new HashMap<String, String>();
-		isoInformation.put("isoLanguageCode", isoLanguageCode);
-		isoInformation.put("isoCountryCode", isoCountryCode);
-		isoInformation.put("isoCurrencyCode", isoCurrencyCode);
+
+		header.put("isoLanguageCode", isoLanguageCode);
+		header.put("isoCountryCode", isoCountryCode);
+		header.put("isoCurrencyCode", isoCurrencyCode);
+		header.put("originApp", originApp);
 		
 		simulationReqDto.address_origin = address_origin;
 		simulationReqDto.address_destination = address_destination;
@@ -74,7 +77,7 @@ public class RoadwayController {
 		simulationReqDto.type_delivery = type_delivery;
 		simulationReqDto.unity_measurement_weight = unity_measurement_weight;
 		simulationReqDto.unity_measurement_distance_txt = MetricUnitMeasurement_Constants.kilometro_UnitMeasurement;
-		return roadwayService.getSimulationCosts(simulationReqDto,isoInformation);
+		return roadwayService.getSimulationCosts(simulationReqDto,header);
 	}
 
 }
