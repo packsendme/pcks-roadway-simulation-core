@@ -10,9 +10,11 @@ import org.springframework.stereotype.Component;
 
 import com.packsendme.exchange.bre.model.ExchangeBRE_Model;
 import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model;
+import com.packsendme.lib.common.constants.generic.MetricUnitMeasurement_Constants;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 import com.packsendme.lib.simulation.http.SimulationDataForCalculateRequest_Dto;
 import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
+import com.packsendme.lib.utility.WeightConvert_Utility;
 import com.packsendme.microservice.roadway.config.Cache_Config;
 import com.packsendme.microservice.roadway.controller.IBusinessManager_SA_Client;
 import com.packsendme.microservice.roadway.controller.IExchangeRate_Client;
@@ -37,7 +39,8 @@ public class RoadwayLoadData_Component {
 	@Autowired
 	private RoadwayParserData_Component roadwayParserData;
 	
-	
+	WeightConvert_Utility weightUtility = new WeightConvert_Utility(); 
+			
 	@Autowired
 	private Cache_Config cache;
 
@@ -66,8 +69,20 @@ public class RoadwayLoadData_Component {
 			ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(header.get("isoCurrencyCode").toString());
 			ExchangeBRE_Model exchangeBRE = roadwayParserData.getParseExchangeResponseCache(exchangeResponse);
 	
+			
+			// (4) Convert Weight in Gram Unit Measurement
+			double weight_productGR = 0.0;
+			
+			if(simulationData.unity_measurement_weight.equals(MetricUnitMeasurement_Constants.tonelada_UnitMeasurement)) {
+				weight_productGR = weightUtility.ToneladaToGrama(simulationData.weight_product);
+			}
+			else if(simulationData.unity_measurement_weight.equals(MetricUnitMeasurement_Constants.kilograma_UnitMeasurement)) {
+				weight_productGR = weightUtility.kilogramoToGrama(simulationData.weight_product);
+			}
+			
 			simulationReqCustomer_dto = new SimulationDataForCalculateRequest_Dto(
 					simulationData.weight_product, 
+					weight_productGR,
 					simulationData.unity_measurement_weight, 
 					simulationData.type_delivery, 
 					header.get("isoLanguageCode").toString(), 
