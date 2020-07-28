@@ -25,5 +25,13 @@ public interface IBusinessManager_SA_Client {
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
 			@Validated @RequestParam ("name_rule") String name_rule);		
+	
+	@GetMapping("/businessrule/sa/truck")
+	public ResponseEntity<?> getTruckBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String name_rule);
 
 }

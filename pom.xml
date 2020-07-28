@@ -104,6 +104,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>com.packsendme.bre.truck</groupId>
+  			<artifactId>packsendme-truck-bre</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.packsendme.lib.calculate</groupId>
   			<artifactId>packsendme-roadwaycalculate-sa-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

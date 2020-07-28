@@ -17,5 +17,10 @@ public class Cache_Config {
 	// FinanceCostsDelivery	
 	@Value(value = "${redis.cache.financeCostDeliveryBRE_SA}")
 	public String financeCostDeliveryBRE_SA;
+	
+	// Truck-Table/ANTT	
+	@Value(value = "${redis.cache.truckBRE_SA}")
+	public String truckBRE_SA;
+
 
 }
