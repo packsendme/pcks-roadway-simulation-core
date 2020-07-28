@@ -11,6 +11,7 @@ import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
+import com.packsendme.truck.bre.model.TruckBRE_Model;
 
 @Component
 public class RoadwayParserData_Component {
@@ -102,27 +103,37 @@ public class RoadwayParserData_Component {
 	}
 	
 	// Parse Response HTTP the service ExchangeRateBRE 
-		public ExchangeBRE_Model getParseExchangeResponseCache(ResponseEntity<?> cacheResponse) {
-			ExchangeBRE_Model exchangeBRE = null;
+	public ExchangeBRE_Model getParseExchangeResponseCache(ResponseEntity<?> cacheResponse) {
+		ExchangeBRE_Model exchangeBRE = null;
+		try{
+			if(cacheResponse.getStatusCode() == HttpStatus.ACCEPTED) {
+				String jsonPayload = cacheResponse.getBody().toString();
+				Response<Object> response = gson.fromJson(jsonPayload, Response.class);
+				if(response.getResponseCode() == HttpExceptionPackSend.FOUND_EXCHANGE.value()) {
+					System.out.println(" MY OBJECT  "+ response.getBody().toString());
+					String jsonObject = response.getBody().toString();
+				}
+			}
+			return exchangeBRE;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	// Parse Response HTTP the service TruckBRE 
+	public TruckBRE_Model getParseTruckResponseCache(ResponseEntity<?> cacheResponse) {
+		TruckBRE_Model truckBRE = null;
 			try{
 				if(cacheResponse.getStatusCode() == HttpStatus.ACCEPTED) {
-						String jsonPayload = cacheResponse.getBody().toString();
-						Response<Object> response = gson.fromJson(jsonPayload, Response.class);
-						if(response.getResponseCode() == HttpExceptionPackSend.FOUND_EXCHANGE.value()) {
-							System.out.println(" MY OBJECT  "+ response.getBody().toString());
-							String jsonObject = response.getBody().toString();
-							exchangeBRE = gson.fromJson(jsonObject, ExchangeBRE_Model.class);
-							System.out.println(" ");
-							System.out.println(" ");
-							System.out.println("===============================================================================");
-							System.out.println("RoadwayBRE - name "+ exchangeBRE.value);
-							System.out.println("RoadwayBRE - roadwayBRE_Dto  "+ exchangeBRE.toCurrent);
-							System.out.println("===============================================================================");
-							System.out.println(" ");
-							System.out.println(" ");
-						}
+					String jsonPayload = cacheResponse.getBody().toString();
+					Response<Object> response = gson.fromJson(jsonPayload, Response.class);
+					if(response.getResponseCode() == HttpExceptionPackSend.FOUND_BUSINESS_RULE.value()) {
+						System.out.println(" MY OBJECT  "+ response.getBody().toString());
+						String jsonObject = response.getBody().toString();
+					}
 				}
-				return exchangeBRE;
+				return truckBRE;
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;

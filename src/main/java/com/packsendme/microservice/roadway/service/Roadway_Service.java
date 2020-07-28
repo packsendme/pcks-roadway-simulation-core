@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.lib.roadwaycalculate.component.RoadwayInstanceCosts;
+import com.packsendme.lib.roadwaycalculate.component.RoadwayCalculateCosts;
 import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
 import com.packsendme.lib.simulation.roadway.SimulationRoadwayResponse_Dto;
 import com.packsendme.microservice.roadway.component.RoadwayLoadData_Component;
@@ -29,8 +29,8 @@ public class Roadway_Service {
 		try {
 			LoadDataSouthAmerica_Dto loadDataSA_dto = roadwayLoadData.getDataSouthAmerica(simulationData, header);
 			
-			RoadwayInstanceCosts roadwayInstance = new RoadwayInstanceCosts();
-			SimulationRoadwayResponse_Dto simulationRoadwayResp = roadwayInstance.instanceRulesCosts(loadDataSA_dto.simulationTrackingAPI, loadDataSA_dto.simulationData);
+			RoadwayCalculateCosts roadwayCosts = new RoadwayCalculateCosts();
+			SimulationRoadwayResponse_Dto simulationRoadwayResp = roadwayCosts.calculateCostsByCategory(loadDataSA_dto.simulationTrackingAPI, loadDataSA_dto.simulationData);
 			
 			responseObj = new Response<SimulationRoadwayResponse_Dto>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), simulationRoadwayResp);
 			return new ResponseEntity<>(responseObj, HttpStatus.OK);
