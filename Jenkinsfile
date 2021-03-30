@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NAME_CONTAINER = "roadway-sa-microservice-psm"
-        NAME_IMAGE = "roadway-sa-image-psm:1"
+        NAME_CONTAINER = "pcks-roadway-simulation-core"
+        NAME_IMAGE = "pcks-roadway-simulation-img:1"
         ID_CONTAINER = null 
         PORT_CONTAINER = "9098:9098"
     }
@@ -13,7 +13,7 @@ pipeline {
         stage('Git Checkout Repositorio') {
             steps {
                 git branch: 'develop',
-                url: 'https://github.com/packsendme/packsendme-roadway-server.git'
+                url: 'https://github.com/packsendme/pcks-roadway-simulation-core.git'
             }
         }
         stage('Java Build') {

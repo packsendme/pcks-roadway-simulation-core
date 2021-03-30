@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadway.service;
+package com.packsendme.roadway.simulation.service;
 
 import java.util.Map;
 
@@ -10,24 +10,24 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.lib.roadwaycalculate.component.RoadwayCalculateCosts;
+import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest_Dto;
 import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
 import com.packsendme.lib.simulation.roadway.SimulationRoadwayResponse_Dto;
-import com.packsendme.microservice.roadway.component.RoadwayLoadData_Component;
-import com.packsendme.microservice.roadway.dto.LoadDataSouthAmerica_Dto;
+import com.packsendme.roadway.simulation.component.LoadDataFacadeImpl;
+import com.packsendme.roadway.simulation.dto.LoadData_Dto;
 
 @Service
 @ComponentScan("com.packsendme.microservice.roadway.component")
-public class Roadway_Service {
+public class SimulationRoadway_Service {
 	
 	@Autowired(required=true)
-	private RoadwayLoadData_Component roadwayLoadData;
+	private LoadDataFacadeImpl roadwayLoadData;
 
 	
-	public ResponseEntity<?> getSimulationCosts(SimulationRequest_Dto simulationData, Map header) {
+	public ResponseEntity<?> getSimulationCosts(SimulationRoadwayRequest_Dto simulationData, Map header) {
 		Response<SimulationRoadwayResponse_Dto> responseObj = null;
 		try {
-			LoadDataSouthAmerica_Dto loadDataSA_dto = roadwayLoadData.getDataSouthAmerica(simulationData, header);
+			LoadData_Dto loadDataDto_Obj = roadwayLoadData.getData(simulationData, header);
 			
 			RoadwayCalculateCosts roadwayCosts = new RoadwayCalculateCosts();
 			SimulationRoadwayResponse_Dto simulationRoadwayResp = roadwayCosts.calculateCostsByCategory(loadDataSA_dto.simulationTrackingAPI, loadDataSA_dto.simulationData);

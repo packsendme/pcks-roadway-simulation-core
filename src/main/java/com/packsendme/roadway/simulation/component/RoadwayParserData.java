@@ -1,20 +1,16 @@
-package com.packsendme.microservice.roadway.component;
+package com.packsendme.roadway.simulation.component;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
-import com.packsendme.exchange.bre.model.ExchangeBRE_Model;
-import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model;
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
-import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
-import com.packsendme.truck.bre.model.TruckBRE_Model;
 
 @Component
-public class RoadwayParserData_Component {
+public class RoadwayParserData {
 
 	Gson gson = new Gson();
 	
@@ -46,8 +42,8 @@ public class RoadwayParserData_Component {
 	}
 
 	// Parse Response HTTP the service BussinesRuleManager
-	public RoadwayBRE_Model getParseRoadwayResponseCache(ResponseEntity<?> cacheResponse) {
-		RoadwayBRE_Model roadwayBRE_Dto = null;
+	/*public Roadway getParseRoadwayResponseCache(ResponseEntity<?> cacheResponse) {
+		Roadway roadwayBRE_Dto = null;
 		try{
 			if(cacheResponse.getStatusCode() == HttpStatus.ACCEPTED) {
 					String jsonPayload = cacheResponse.getBody().toString();
@@ -55,11 +51,11 @@ public class RoadwayParserData_Component {
 					if(response.getResponseCode() == HttpExceptionPackSend.FOUND_BUSINESS_RULE.value()) {
 						System.out.println(" MY OBJECT  "+ response.getBody().toString());
 						String jsonObject = response.getBody().toString();
-						roadwayBRE_Dto = gson.fromJson(jsonObject, RoadwayBRE_Model.class);
+						roadwayBRE_Dto = gson.fromJson(jsonObject, Roadway.class);
 						System.out.println(" ");
 						System.out.println(" ");
 						System.out.println("===============================================================================");
-						System.out.println("RoadwayBRE - name "+ roadwayBRE_Dto.name_rule);
+						System.out.println("RoadwayBRE - name "+ roadwayBRE_Dto.name_bre);
 						System.out.println("RoadwayBRE - roadwayBRE_Dto  "+ roadwayBRE_Dto.status);
 						System.out.println("===============================================================================");
 						System.out.println(" ");
@@ -139,6 +135,7 @@ public class RoadwayParserData_Component {
 				return null;
 			}
 		}
+		*/
 	
 
 	
