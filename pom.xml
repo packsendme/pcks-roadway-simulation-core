@@ -3,16 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.packsendme.microservice.roadways</groupId>
-	<artifactId>packsendme-roadway-sa-server</artifactId>
+	<groupId>com.packsendme.microservice.roadway</groupId>
+	<artifactId>pcks-roadway-simulation-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>packsendme-roadway-sa-server</name>
+	<name>pcks-roadway-simulation-core</name>
 
+	 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-	 	<version>2.0.0.RELEASE</version>
+	 	<version>2.1.0.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -69,6 +70,11 @@
 			<version>2.0.10.RELEASE</version>
 		</dependency>
 		-->
+		<dependency>
+			<groupId>com.packsendme.lib.roadway</groupId>
+			<artifactId>pcks-roadbrewa-roadway-lib</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>		
+		</dependency>
 		
 		<dependency>
       		<groupId>org.springframework.boot</groupId>
@@ -88,7 +94,7 @@
 		
 		<dependency>
 			<groupId>com.packsendme.lib.common</groupId>
-			<artifactId>packsendme-common-lib</artifactId>
+			<artifactId>pcks-common-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
@@ -97,35 +103,13 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		
+		
 		<dependency>
-			<groupId>com.packsendme.bre.roadway</groupId>
-  			<artifactId>packsendme-roadway-bre</artifactId>
+			<groupId>com.packsendme.lib.simulation</groupId>
+  			<artifactId>pcks-roadway-simulation-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.packsendme.bre.truck</groupId>
-  			<artifactId>packsendme-truck-bre</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.packsendme.lib.calculate</groupId>
-  			<artifactId>packsendme-roadwaycalculate-sa-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.packsendme.lib.entity.simulation</groupId>
-  			<artifactId>packsendme-simulation-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-		    <groupId>com.packsendme.bre.financecostdelivery</groupId>
-		    <artifactId>packsendme-financecostdelivery-bre</artifactId>
-		    <version>0.0.1-SNAPSHOT</version>
-		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -136,17 +120,11 @@
 		            <artifactId>lettuce-core</artifactId>
 		        </exclusion>
 		    </exclusions>            
-		</dependency>     
- 
+		</dependency>    
+		 
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.packsendme.api.exchange</groupId>
-			<artifactId>packsendme-exchange-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

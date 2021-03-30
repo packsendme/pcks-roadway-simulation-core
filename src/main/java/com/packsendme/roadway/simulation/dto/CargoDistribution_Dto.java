@@ -1,4 +1,4 @@
-package com.packsendme.microservice.roadway.dto;
+package com.packsendme.roadway.simulation.dto;
 
 import lombok.Getter;
 import lombok.Setter;
