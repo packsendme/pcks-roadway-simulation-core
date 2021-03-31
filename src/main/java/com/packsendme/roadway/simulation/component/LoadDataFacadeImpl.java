@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.packsendme.lib.common.exchange.Exchange;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
@@ -19,8 +18,8 @@ import com.packsendme.roadway.simulation.controller.IGoogleAPI_Client;
 import com.packsendme.roadway.simulation.dao.RoadwayCacheImpl_Dao;
 
 @Component
-@EnableFeignClients(basePackages="com.packsendme.microservice.roadway.controller")
-@ComponentScan("com.packsendme.microservice.roadway.config")
+@EnableFeignClients(basePackages="com.packsendme.roadway.simulation.controller")
+@ComponentScan("com.packsendme.roadway.simulation.config")
 public class LoadDataFacadeImpl implements IRoadway {
 	
 	@Autowired
