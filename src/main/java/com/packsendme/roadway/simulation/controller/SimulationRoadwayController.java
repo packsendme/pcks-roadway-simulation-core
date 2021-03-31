@@ -8,18 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.packsendme.lib.common.constants.generic.MetricUnitMeasurement_Constants;
-import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest_Dto;
-import com.packsendme.lib.simulation.http.SimulationRequest_Dto;
+import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest;
 import com.packsendme.roadway.simulation.service.SimulationRoadway_Service;
 
 
@@ -39,7 +35,7 @@ public class SimulationRoadwayController {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated  @RequestBody SimulationRoadwayRequest_Dto simulationRoadway)
+			@Validated  @RequestBody SimulationRoadwayRequest simulationObj)
 		throws JsonProcessingException, IOException 
 	{	
 		header.put("isoLanguageCode", isoLanguageCode);
@@ -47,7 +43,7 @@ public class SimulationRoadwayController {
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
 
-		return roadwayService.getSimulationCosts(simulationRoadway,header);
+		return roadwayService.getCostsTransport(simulationObj,header);
 	}
 
 }

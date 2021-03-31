@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
+import com.packsendme.lib.common.exchange.Exchange;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 
@@ -35,6 +36,27 @@ public class RoadwayParserData {
 					}
 			}
 			return trackingAPI_Dto;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	// Parse Response HTTP the service ExchangeRateBRE 
+	public Exchange getParseExchangeResponse(ResponseEntity<?> cacheResponse) {
+		Exchange exchange = null;
+		try{
+			if(cacheResponse.getStatusCode() == HttpStatus.ACCEPTED) {
+				String jsonPayload = cacheResponse.getBody().toString();
+				Response<Object> response = gson.fromJson(jsonPayload, Response.class);
+				if(response.getResponseCode() == HttpExceptionPackSend.FOUND_EXCHANGE.value()) {
+					System.out.println(" MY OBJECT  "+ response.getBody().toString());
+					String jsonObject = response.getBody().toString();
+					exchange = gson.fromJson(jsonObject, Exchange.class);
+				}
+			}
+			return exchange;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -98,24 +120,7 @@ public class RoadwayParserData {
 		}
 	}
 	
-	// Parse Response HTTP the service ExchangeRateBRE 
-	public ExchangeBRE_Model getParseExchangeResponseCache(ResponseEntity<?> cacheResponse) {
-		ExchangeBRE_Model exchangeBRE = null;
-		try{
-			if(cacheResponse.getStatusCode() == HttpStatus.ACCEPTED) {
-				String jsonPayload = cacheResponse.getBody().toString();
-				Response<Object> response = gson.fromJson(jsonPayload, Response.class);
-				if(response.getResponseCode() == HttpExceptionPackSend.FOUND_EXCHANGE.value()) {
-					System.out.println(" MY OBJECT  "+ response.getBody().toString());
-					String jsonObject = response.getBody().toString();
-				}
-			}
-			return exchangeBRE;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+
 	
 	// Parse Response HTTP the service TruckBRE 
 	public TruckBRE_Model getParseTruckResponseCache(ResponseEntity<?> cacheResponse) {
