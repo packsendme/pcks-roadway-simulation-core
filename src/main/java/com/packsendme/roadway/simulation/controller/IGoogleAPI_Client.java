@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name="pcks-google-api")
 public interface IGoogleAPI_Client {
 
-	@GetMapping("/distance/{from}/{to}/{measurement}")
+	@GetMapping("/api/google/distance/{from}/{to}/{measurement}")
 	public ResponseEntity<?> getTracking(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
