@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -35,7 +36,7 @@ public class SimulationRoadwayController {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated  @RequestBody SimulationRoadwayRequest simulationObj)
+			@ModelAttribute  @Validated  SimulationRoadwayRequest simulationObj)
 		throws JsonProcessingException, IOException 
 	{	
 		header.put("isoLanguageCode", isoLanguageCode);
