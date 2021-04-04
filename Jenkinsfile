@@ -5,7 +5,7 @@ pipeline {
         NAME_CONTAINER = "pcks-roadway-simulation-core"
         NAME_IMAGE = "pcks-roadway-simulation-img:1"
         ID_CONTAINER = null 
-        PORT_CONTAINER = "9099:9099"
+        PORT_CONTAINER = "9091:9091"
     }
 
     stages {
