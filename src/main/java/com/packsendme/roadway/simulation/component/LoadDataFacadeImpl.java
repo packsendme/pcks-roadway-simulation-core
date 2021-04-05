@@ -72,6 +72,15 @@ public class LoadDataFacadeImpl implements IRoadway {
 	@Override
 	public ResponseEntity<?> getGoogleMap_API(Map header, SimulationRoadwayRequest simulationData) {
 		try {
+			System.out.println("");
+			System.out.println("======================================");
+			System.out.println("address_origin "+simulationData.address_origin);
+			System.out.println("address_destination "+simulationData.address_destination);
+			System.out.println("address_destination "+simulationData.address_destination);
+			System.out.println("unity_weight "+ simulationData.unity_weight);
+			System.out.println("======================================");
+			System.out.println("");
+
 			return googleClient.getTracking(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
 					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(),simulationData.address_origin,
 					simulationData.address_destination, simulationData.unity_weight);
