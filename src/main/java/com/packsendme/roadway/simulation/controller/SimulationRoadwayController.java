@@ -42,7 +42,14 @@ public class SimulationRoadwayController {
 		header.put("isoCountryCode", isoCountryCode);
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++ ");
+		System.out.println(" getSimulation "+ header.get("isoCurrencyCode"));
+		System.out.println("+++++++++++++++++++++++++++++++++ ");
+		System.out.println(" ");
 
+		
 		return roadwayService.getCostsTransport(simulationObj,header);
 	}
 
