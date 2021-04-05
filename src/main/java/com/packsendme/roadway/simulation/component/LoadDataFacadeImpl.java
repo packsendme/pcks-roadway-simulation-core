@@ -51,6 +51,12 @@ public class LoadDataFacadeImpl implements IRoadway {
 			}
 					
 			//(4) LOAD INSTANTE EXCHANGE :: CACHE OR API
+			System.out.println("");
+			System.out.println("======================================");
+			System.out.println("isoCurrencyCode "+header.get("isoCurrencyCode").toString());
+			System.out.println("======================================");
+			
+			
 			ResponseEntity<?> exchangeAPIResponse = getRateExchange(header.get("isoCurrencyCode").toString());
 			Exchange exchangeObj = roadwayParserData.getParseExchangeResponse(exchangeAPIResponse);
 			
