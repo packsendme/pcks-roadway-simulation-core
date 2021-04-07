@@ -1,5 +1,6 @@
 package com.packsendme.roadway.simulation.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest_Dt
 import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
 import com.packsendme.lib.roadwaycalculate.rulesinstance.InstanceRuleCosts;
 import com.packsendme.roadway.simulation.component.LoadDataFacadeImpl;
+import com.packsendme.roadway.simulation.dao.Simulation_Dao;
+import com.packsendme.roadway.simulation.dto.SimulationResponse_Dto;
 
 @Service
 @ComponentScan("com.packsendme.roadway.simulation.component")
@@ -22,6 +25,9 @@ public class SimulationRoadway_Service {
 	
 	@Autowired(required=true)
 	private LoadDataFacadeImpl roadwayLoadData;
+	
+	@Autowired(required=true)
+	private Simulation_Dao simulationDAO;
 
 	
 	public ResponseEntity<?> getCostsTransport(SimulationRoadwayRequest simulationDataObj, Map header) {
@@ -43,6 +49,38 @@ public class SimulationRoadway_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	public ResponseEntity<?> postSimulationResponse(SimulationRoadwayResponse entity, Map header) {
+		Response<SimulationRoadwayResponse> responseObj = null;
+		try {
+			// Save SimulationDAO
+			simulationDAO.save(entity);
+			responseObj = new Response<SimulationRoadwayResponse>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			responseObj = new Response<SimulationRoadwayResponse>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	public ResponseEntity<?> getSimulation() {
+		Response<SimulationResponse_Dto> responseObj = null;
+		try {
+			// Save SimulationDAO
+			List<SimulationRoadwayResponse> simulationL = simulationDAO.findAll();
+			SimulationResponse_Dto simulationResponse = new SimulationResponse_Dto(simulationL);
+			responseObj = new Response<SimulationResponse_Dto>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), simulationResponse);
+			return new ResponseEntity<>(responseObj, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			responseObj = new Response<SimulationResponse_Dto>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	
 	
 }

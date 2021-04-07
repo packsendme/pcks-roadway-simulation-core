@@ -1,5 +1,7 @@
 package com.packsendme.roadway.simulation.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,7 +12,7 @@ import com.packsendme.roadway.simulation.config.Redis_Config;
 
 @Repository
 @Transactional
-public class RoadwayCacheImpl_Dao implements ICrudCache<Roadway>{
+public class RoadwayCacheImpl_Dao implements ICrud<Roadway>{
 	
 	private final boolean RESULT_SUCCESS = true;
 	private final boolean RESULT_ERROR = false;
@@ -31,6 +33,20 @@ public class RoadwayCacheImpl_Dao implements ICrudCache<Roadway>{
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	@Override
+	public Roadway save(Roadway entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Roadway> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
  
