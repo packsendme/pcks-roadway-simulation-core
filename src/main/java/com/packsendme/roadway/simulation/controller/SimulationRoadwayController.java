@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest;
+import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
 import com.packsendme.roadway.simulation.service.SimulationRoadway_Service;
 
 
@@ -54,7 +55,7 @@ public class SimulationRoadwayController {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated @RequestBody  SimulationRoadwayRequest simulationObj)
+			@Validated @RequestBody  SimulationRoadwayResponse simulationObj)
 		throws JsonProcessingException, IOException 
 	{	
 		header.put("isoLanguageCode", isoLanguageCode);
@@ -62,7 +63,7 @@ public class SimulationRoadwayController {
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
 		
-		return roadwayService.getCostsTransport(simulationObj,header);
+		return roadwayService.postSimulationResponse(simulationObj,header);
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
