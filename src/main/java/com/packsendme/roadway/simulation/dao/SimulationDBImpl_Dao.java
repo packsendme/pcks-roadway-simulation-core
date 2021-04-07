@@ -3,16 +3,16 @@ package com.packsendme.roadway.simulation.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mongodb.MongoClientException;
 import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
 import com.packsendme.roadway.simulation.repository.IRoadway_Repository;
 
-@Component
-@ComponentScan({"com.packsendme.roadbrewa.vehicle.repository"})
-public class Simulation_Dao implements ICrud<SimulationRoadwayResponse> {
+@Repository
+@Transactional
+public class SimulationDBImpl_Dao implements ICrud<SimulationRoadwayResponse> {
 
 	@Autowired
 	IRoadway_Repository simulation_Rep;
@@ -42,6 +42,16 @@ public class Simulation_Dao implements ICrud<SimulationRoadwayResponse> {
 		catch (MongoClientException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	@Override
+	public void delete(SimulationRoadwayResponse entity) {
+		try {
+			simulation_Rep.delete(entity);
+		}
+		catch (MongoClientException e) {
+			e.printStackTrace();
 		}
 	} 
 

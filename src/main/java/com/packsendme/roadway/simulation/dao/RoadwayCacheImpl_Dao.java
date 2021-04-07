@@ -14,9 +14,6 @@ import com.packsendme.roadway.simulation.config.Redis_Config;
 @Transactional
 public class RoadwayCacheImpl_Dao implements ICrud<Roadway>{
 	
-	private final boolean RESULT_SUCCESS = true;
-	private final boolean RESULT_ERROR = false;
-
 	@Autowired(required=true)
 	private RedisTemplate<Object, Object> redisTemplate;
 
@@ -47,6 +44,13 @@ public class RoadwayCacheImpl_Dao implements ICrud<Roadway>{
 	public List<Roadway> findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public void delete(Roadway entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
  

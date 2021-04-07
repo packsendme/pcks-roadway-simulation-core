@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,7 @@ public class SimulationRoadwayController {
 	
 	//			@ModelAttribute
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@PostMapping("/simulation")
+	@PostMapping("/simulation/transport")
 	public ResponseEntity<?> getSimulation(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
@@ -45,11 +46,11 @@ public class SimulationRoadwayController {
 		header.put("isoCountryCode", isoCountryCode);
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
-		return roadwayService.getCostsTransport(simulationObj,header);
+		return roadwayService.getSimulationTransport(simulationObj,header);
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@PostMapping("/simulationsave")
+	@PostMapping("/simulation")
 	public ResponseEntity<?> postSimulation(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
@@ -63,7 +64,25 @@ public class SimulationRoadwayController {
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
 		
-		return roadwayService.postSimulationResponse(simulationObj,header);
+		return roadwayService.postSimulationResponse(simulationObj);
+	}
+	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@DeleteMapping("/simulation")
+	public ResponseEntity<?> deleteSimulation(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestBody  SimulationRoadwayResponse simulationObj)
+		throws JsonProcessingException, IOException 
+	{	
+		header.put("isoLanguageCode", isoLanguageCode);
+		header.put("isoCountryCode", isoCountryCode);
+		header.put("isoCurrencyCode", isoCurrencyCode);
+		header.put("originApp", originApp);
+		
+		return roadwayService.deleteSimulation(simulationObj);
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
