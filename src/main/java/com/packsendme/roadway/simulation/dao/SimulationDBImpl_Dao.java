@@ -46,9 +46,9 @@ public class SimulationDBImpl_Dao implements ICrud<SimulationRoadwayResponse> {
 	}
 
 	@Override
-	public void delete(SimulationRoadwayResponse entity) {
+	public void delete(String id) {
 		try {
-			simulation_Rep.delete(entity);
+			simulation_Rep.deleteById(id);
 		}
 		catch (MongoClientException e) {
 			e.printStackTrace();

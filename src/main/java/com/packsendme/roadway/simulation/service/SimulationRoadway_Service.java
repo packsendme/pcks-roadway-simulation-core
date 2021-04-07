@@ -81,11 +81,11 @@ public class SimulationRoadway_Service {
 		}
 	}
 	
-	public ResponseEntity<?> deleteSimulation(SimulationRoadwayResponse entity) {
+	public ResponseEntity<?> deleteSimulation(String id) {
 		Response<SimulationRoadwayResponse> responseObj = null;
 		try {
 			// Delete Simulation
-			simulationDAO.delete(entity);
+			simulationDAO.delete(id);
 			responseObj = new Response<SimulationRoadwayResponse>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.OK);
 		}

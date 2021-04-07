@@ -48,7 +48,7 @@ public class RoadwayCacheImpl_Dao implements ICrud<Roadway>{
 
 
 	@Override
-	public void delete(Roadway entity) {
+	public void delete(String id) {
 		// TODO Auto-generated method stub
 		
 	}

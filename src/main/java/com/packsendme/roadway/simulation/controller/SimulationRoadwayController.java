@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -74,7 +75,7 @@ public class SimulationRoadwayController {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated @RequestBody  SimulationRoadwayResponse simulationObj)
+			@Validated @RequestParam("id") String id)
 		throws JsonProcessingException, IOException 
 	{	
 		header.put("isoLanguageCode", isoLanguageCode);
@@ -82,7 +83,7 @@ public class SimulationRoadwayController {
 		header.put("isoCurrencyCode", isoCurrencyCode);
 		header.put("originApp", originApp);
 		
-		return roadwayService.deleteSimulation(simulationObj);
+		return roadwayService.deleteSimulation(id);
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
