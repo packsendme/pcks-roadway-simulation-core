@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.packsendme.lib.common.constants.generic.MetricUnitMeasurement_Constants;
 import com.packsendme.lib.common.exchange.Exchange;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
 import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest;
@@ -89,7 +90,7 @@ public class LoadDataFacadeImpl implements IRoadway {
 
 			return googleClient.getTracking(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
 					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(),simulationData.address_origin,
-					simulationData.address_destination, simulationData.unity_weight);
+					simulationData.address_destination, MetricUnitMeasurement_Constants.kilometro_UnitMeasurement);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
