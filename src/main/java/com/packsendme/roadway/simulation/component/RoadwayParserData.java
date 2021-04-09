@@ -20,6 +20,7 @@ public class RoadwayParserData {
 		try{
 			if(googleAPIResponse.getStatusCode() == HttpStatus.ACCEPTED) {
 					String jsonPayload = googleAPIResponse.getBody().toString();
+					System.out.println(" :::: JSON FORMAT  :::: "+ jsonPayload);
 					Response<Object> response = gson.fromJson(jsonPayload, Response.class);
 					if(response.getResponseCode() == HttpExceptionPackSend.GOOGLEAPI_PLACE.value()) {
 						System.out.println(" MY OBJECT  "+ response.getBody().toString());
