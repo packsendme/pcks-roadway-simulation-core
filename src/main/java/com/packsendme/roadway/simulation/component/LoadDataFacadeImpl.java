@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import com.google.gson.Gson;
 import com.packsendme.lib.common.constants.generic.MetricUnitMeasurement_Constants;
 import com.packsendme.lib.common.exchange.Exchange;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
@@ -70,7 +69,7 @@ public class LoadDataFacadeImpl implements IRoadway {
 			System.out.println("======================================");
 			
 			
-			ResponseEntity<?> exchangeAPIResponse = getRateExchange(header.get("isoCurrencyCode").toString());
+			ResponseEntity<?> exchangeAPIResponse = getRateExchange(header, header.get("isoCurrencyCode").toString());
 			Exchange exchangeObj = roadwayParserData.getParseExchangeResponse(exchangeAPIResponse);
 			
 			SimulationRoadwayRequest_Dto simulationData_Obj = new SimulationRoadwayRequest_Dto(
@@ -120,9 +119,10 @@ public class LoadDataFacadeImpl implements IRoadway {
 	
 	
 	@Override
-	public ResponseEntity<?> getRateExchange(String current){
+	public ResponseEntity<?> getRateExchange(Map header, String current){
 		try {
-			return exchangeClient.getExchange(current);
+			return exchangeClient.getExchange(header.get("isoLanguageCode").toString(), header.get("isoCountryCode").toString(),
+					header.get("isoCurrencyCode").toString(),header.get("originApp").toString(), current);
 		} catch (Exception e) {
 			e.printStackTrace();
  		}

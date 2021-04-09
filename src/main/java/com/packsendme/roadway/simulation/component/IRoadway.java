@@ -16,7 +16,7 @@ public interface IRoadway {
 
 	Roadway getTransport_BRE(String key);
 
-	ResponseEntity<?> getRateExchange(String current);
+	ResponseEntity<?> getRateExchange(Map header, String current);
 	
 	ResponseEntity<?> getAntt_BRE();
 }
