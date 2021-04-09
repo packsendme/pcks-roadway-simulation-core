@@ -83,8 +83,7 @@ public class LoadDataFacadeImpl implements IRoadway {
 			System.out.println("======================================");
 			System.out.println("address_origin "+simulationData.address_origin);
 			System.out.println("address_destination "+simulationData.address_destination);
-			System.out.println("address_destination "+simulationData.address_destination);
-			System.out.println("unity_weight "+ simulationData.unity_weight);
+			System.out.println("unity_weight "+ MetricUnitMeasurement_Constants.kilometro_UnitMeasurement);
 			System.out.println("======================================");
 			System.out.println("");
 
