@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.Gson;
 import com.packsendme.lib.common.constants.generic.MetricUnitMeasurement_Constants;
 import com.packsendme.lib.common.exchange.Exchange;
 import com.packsendme.lib.common.response.dto.api.GoogleAPITrackingResponse_Dto;
@@ -44,12 +45,23 @@ public class LoadDataFacadeImpl implements IRoadway {
 			GoogleAPITrackingResponse_Dto googleTrackingAPI = roadwayParserData.getParseRoadwayResponseAPI(googleAPIResponse);
 	
 			//(2) LOAD INSTANTE CACHE RULE BRE-TRANSPORT_TYPE
+			System.out.println("");
+			System.out.println("======================================");
+			System.out.println("type_transport "+simulationData.type_transport);
+			System.out.println("======================================");
+			
 			Roadway roadwayRuleBRE = getTransport_BRE(simulationData.type_transport);
+			String jsonObject = roadwayRuleBRE.toString();
+			System.out.println("");
+			System.out.println("======================================");
+			System.out.println("Roadway BRE "+ jsonObject);
+			System.out.println("======================================");
 
+			
 			//(3) LOAD INSTANTE CACHE RULE ANTT - TABLE
-			if (roadwayRuleBRE.tariffPlan.antt_plan == true){
+/*			if (roadwayRuleBRE.tariffPlan.antt_plan == true){
 				getAntt_BRE();
-			}
+			}*/
 					
 			//(4) LOAD INSTANTE EXCHANGE :: CACHE OR API
 			System.out.println("");
