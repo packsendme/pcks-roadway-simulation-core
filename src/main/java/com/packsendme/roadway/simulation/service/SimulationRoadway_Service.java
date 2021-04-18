@@ -45,6 +45,7 @@ public class SimulationRoadway_Service {
 		}
 		catch (Exception e) {
 			// TODO: handle exception
+			System.out.println(e);
 			responseObj = new Response<SimulationRoadwayResponse>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
 		}
