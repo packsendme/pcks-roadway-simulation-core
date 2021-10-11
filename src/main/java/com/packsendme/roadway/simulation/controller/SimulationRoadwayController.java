@@ -24,7 +24,7 @@ import com.packsendme.roadway.simulation.service.SimulationRoadway_Service;
 
 
 @RestController
-@RequestMapping("/roadway")
+@RequestMapping("/roadway/simulation")
 public class SimulationRoadwayController {
 
 	@Autowired
@@ -32,9 +32,9 @@ public class SimulationRoadwayController {
 
 	private Map<String, String> header = new HashMap<String, String>();
 	
-	//			@ModelAttribute
+	//@ModelAttribute
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@PostMapping("/simulation/transport")
+	@PostMapping("/transport")
 	public ResponseEntity<?> getSimulation(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
@@ -51,7 +51,7 @@ public class SimulationRoadwayController {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@PostMapping("/simulation")
+	@PostMapping("/")
 	public ResponseEntity<?> postSimulation(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
@@ -69,7 +69,7 @@ public class SimulationRoadwayController {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/simulation")
+	@DeleteMapping("/")
 	public ResponseEntity<?> deleteSimulation(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
@@ -87,7 +87,7 @@ public class SimulationRoadwayController {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/simulation")
+	@GetMapping("/")
 	public ResponseEntity<?> getSimulationAll(
 			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
 			@RequestHeader("isoCountryCode") String isoCountryCode,
