@@ -9,12 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
-import com.packsendme.lib.common.response.Response;
-import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest;
-import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest_Dto;
-import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
-import com.packsendme.lib.roadwaycalculate.rulesinstance.InstanceRuleCosts;
+import com.packsendme.cross.common.constants.generic.HttpExceptionPackSend;
+import com.packsendme.cross.common.response.Response;
+import com.packsendme.roadway.commons.request.SimulationRoadwayRequest;
+import com.packsendme.roadway.calculate.component.InstanceRuleCosts;
+import com.packsendme.roadway.commons.dto.SimulationRoadwayDto;
+import com.packsendme.roadway.commons.response.SimulationRoadwayResponse;
 import com.packsendme.roadway.simulation.component.LoadDataFacadeImpl;
 import com.packsendme.roadway.simulation.dao.SimulationDBImpl_Dao;
 import com.packsendme.roadway.simulation.dto.SimulationResponse_Dto;
@@ -34,7 +34,7 @@ public class SimulationRoadway_Service {
 		Response<SimulationRoadwayResponse> responseObj = null;
 		try {
 			// Load Data From API or Cache
-			SimulationRoadwayRequest_Dto simulationDataDto_Obj = roadwayLoadData.getData(simulationDataObj, header);
+			SimulationRoadwayDto simulationDataDto_Obj = roadwayLoadData.getData(simulationDataObj, header);
 			InstanceRuleCosts instanceRulesObj = new  InstanceRuleCosts();
 			
 			// Instance JAR - Costs Calculate 

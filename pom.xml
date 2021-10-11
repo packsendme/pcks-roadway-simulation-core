@@ -71,8 +71,8 @@
 		</dependency>
 		-->
 		<dependency>
-			<groupId>com.packsendme.lib.roadway</groupId>
-			<artifactId>pcks-roadbrewa-roadway-lib</artifactId>
+			<groupId>com.packsendme.roadway.lib</groupId>
+			<artifactId>pcks-roadway-commons-lib</artifactId>
   			<version>0.0.1-SNAPSHOT</version>		
 		</dependency>
 		
@@ -92,12 +92,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.packsendme.lib.common</groupId>
-			<artifactId>pcks-common-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
+	
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -105,13 +100,7 @@
 		
 		
 		<dependency>
-			<groupId>com.packsendme.lib.roadway</groupId>
-  			<artifactId>pcks-roadway-simulation-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.packsendme.lib.roadway</groupId>
+			<groupId>com.packsendme.roadway.lib</groupId>
   			<artifactId>pcks-roadway-calculate-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
+import com.packsendme.roadway.commons.response.SimulationRoadwayResponse;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +24,4 @@ public class SimulationResponse_Dto implements Serializable{
 		super();
 		this.simulationResponseL = simulationResponseL;
 	}
-
-
-	
-	
 }

@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.packsendme.roadbrewa.entity.Roadway;
+import com.packsendme.roadway.commons.entity.Roadway;
 import com.packsendme.roadway.simulation.config.Redis_Config;
 
 @Repository

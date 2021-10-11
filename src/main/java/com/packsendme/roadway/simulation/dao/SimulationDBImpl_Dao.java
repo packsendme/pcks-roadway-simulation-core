@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mongodb.MongoClientException;
-import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
+import com.packsendme.roadway.commons.response.SimulationRoadwayResponse;
 import com.packsendme.roadway.simulation.repository.IRoadway_Repository;
 
 @Repository

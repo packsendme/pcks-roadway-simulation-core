@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.packsendme.lib.roadway.simulation.request.SimulationRoadwayRequest;
-import com.packsendme.lib.roadway.simulation.response.SimulationRoadwayResponse;
+import com.packsendme.roadway.commons.request.SimulationRoadwayRequest;
+import com.packsendme.roadway.commons.response.SimulationRoadwayResponse;
 import com.packsendme.roadway.simulation.service.SimulationRoadway_Service;
 
 
