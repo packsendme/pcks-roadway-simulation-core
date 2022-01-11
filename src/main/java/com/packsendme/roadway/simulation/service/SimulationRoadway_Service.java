@@ -40,6 +40,8 @@ public class SimulationRoadway_Service {
 			// Instance JAR - Costs Calculate 
 			SimulationRoadwayResponse simulationRoadwayResp = instanceRulesObj.instanceRulesCosts(simulationDataDto_Obj);
 			
+			// Save SimulationDAO - REQUEST
+			simulationRoadwayResp = simulationDAO.save(simulationRoadwayResp);
 			responseObj = new Response<SimulationRoadwayResponse>(0,HttpExceptionPackSend.SIMULATION_ROADWAY.getAction(), simulationRoadwayResp);
 			return new ResponseEntity<>(responseObj, HttpStatus.OK);
 		}
